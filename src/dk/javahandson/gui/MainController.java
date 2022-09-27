@@ -6,6 +6,7 @@ import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 
 import java.awt.*;
 
@@ -36,5 +37,10 @@ public class MainController {
     private void changeColor(ActionEvent actionEvent) {
         Color color = colorPicker.getValue();
         lbl.setTextFill(color);
+    }
+    @FXML
+    private void setFullScreen(ActionEvent actionEvent) {
+        // stage = (Stage) lbl.getScene().getWindow();
+        // stage.isFullScreen();
     }
 }
