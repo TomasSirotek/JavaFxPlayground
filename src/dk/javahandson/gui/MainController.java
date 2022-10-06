@@ -2,6 +2,9 @@ package dk.javahandson.gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -9,6 +12,8 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.awt.*;
+import java.io.IOException;
+import java.util.Objects;
 
 public class MainController {
     @FXML
@@ -38,9 +43,25 @@ public class MainController {
         Color color = colorPicker.getValue();
         lbl.setTextFill(color);
     }
+
     @FXML
-    private void setFullScreen(ActionEvent actionEvent) {
-        // stage = (Stage) lbl.getScene().getWindow();
-        // stage.isFullScreen();
+    private void openWindow(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/SecondWindow.fxml"));
+        Parent root = loader.load();
+        SecondWindow secondWindow = loader.getController();
+        secondWindow.setLabel("Ahoj");
+        secondWindow.setParentController(this);
+        Stage stage = new Stage();
+        stage.setTitle("Second window");
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+
+    private void changeWindow(String fxmlFile) throws IOException {
+
+    }
+
+    public void sendData(String text) {
+      lbl.setText(text);
     }
 }
